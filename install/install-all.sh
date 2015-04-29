@@ -22,7 +22,7 @@
 #
 
 #Set branch to install develop / master
-BRANCH='master'
+BRANCH='develop'
 
 SCRIPT_NOTICE="This script is only intended to run on Debian 7.X"
 
@@ -110,11 +110,11 @@ esac
 
 #Install Freeswitch
 cd /usr/src/
-wget --no-check-certificate  https://raw.github.com/Star2Billing/newfies-dialer/$BRANCH/install/install-freeswitch.sh -O install-freeswitch.sh
+wget --no-check-certificate  https://raw.github.com/asterisk-pbxru/newfies-dialer/$BRANCH/install/install-freeswitch.sh -O install-freeswitch.sh
 bash install-freeswitch.sh
 /etc/init.d/freeswitch start
 
 #Install Newfies
 cd /usr/src/
-wget --no-check-certificate https://raw.github.com/Star2Billing/newfies-dialer/$BRANCH/install/install-newfies.sh -O install-newfies.sh
+wget --no-check-certificate https://raw.github.com/asterisk-pbxru/newfies-dialer/$BRANCH/install/install-newfies.sh -O install-newfies.sh
 bash install-newfies.sh
