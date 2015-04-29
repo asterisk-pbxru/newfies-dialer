@@ -19,10 +19,10 @@
 #
 
 #Set branch to install develop / master
-BRANCH='master'
+BRANCH='develop'
 
-FS_CONF_PATH=https://raw.github.com/Star2Billing/newfies-dialer/$BRANCH/install/freeswitch-conf
-FS_INIT_PATH=https://raw.github.com/Star2Billing/newfies-dialer/$BRANCH/install/freeswitch-init
+FS_CONF_PATH=https://raw.github.com/asterisk-pbxru/newfies-dialer/$BRANCH/install/freeswitch-conf
+FS_INIT_PATH=https://raw.github.com/asterisk-pbxru/newfies-dialer/$BRANCH/install/freeswitch-init
 FS_CONFIG_PATH=/etc/freeswitch
 FS_BASE_PATH=/usr/src/
 CURRENT_PATH=$PWD
