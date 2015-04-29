@@ -24,7 +24,7 @@
 #
 
 #Set branch to install develop / master
-BRANCH="master"
+BRANCH="develop"
 
 DATETIME=$(date +"%Y%m%d%H%M%S")
 INSTALL_DIR='/usr/share/newfies'
@@ -904,39 +904,12 @@ func_install_rabbitmq() {
     echo "Install RabbitMQ ..."
     case $DIST in
         'DEBIAN')
-            chk=`grep "rabbitmq" /etc/apt/sources.list.d/rabbitmq.list|wc -l`
-            if [ $chk -lt 1 ] ; then
-                echo "Setup new sources.list entries for RabbitMQ"
-                echo "deb http://www.rabbitmq.com/debian/ testing main" > /etc/apt/sources.list.d/rabbitmq.list
-                wget --no-check-certificate --quiet -O - http://www.rabbitmq.com/rabbitmq-signing-key-public.asc | apt-key add -
-            fi
-            apt-get update
-            apt-get -y install rabbitmq-server
-            /usr/sbin/rabbitmq-plugins enable rabbitmq_management
-            # echo "[{rabbit, [{loopback_users, []}]}]." > /etc/rabbitmq/rabbitmq.config
-
-            #Set RabbitMQ to start on boot and start it up immediately:
-            update-rc.d rabbitmq-server defaults
-            /etc/init.d/rabbitmq-server start
+                echo "skip RabbitMQ"
         ;;
         'CENTOS')
-            #TODO: Not supported
-            echo ""
-            echo "RabbitMQ is not supported on CentOS, fork and patch away please"
-            echo ""
-            exit 1
+            echo "skip RabbitMQ "
         ;;
     esac
-
-    #Create RabbitMQ vhost and user for Newfies-Dialer
-    rabbitmqctl add_vhost /newfiesdialer
-    rabbitmqctl add_user newfiesdialer mypassword
-    rabbitmqctl set_permissions -p /newfiesdialer newfiesdialer ".*" ".*" ".*"
-
-    #Check Cluster Status
-    rabbitmqctl cluster_status
-    #List the running queues
-    rabbitmqctl list_queues -p /newfiesdialer
 }
 
 
